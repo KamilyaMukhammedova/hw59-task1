@@ -13,6 +13,10 @@ class MoviesContainer extends Component {
     newMovieName: '',
   };
 
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log('[container] should update');
+  }
+
   onNewMovieName = (value) => {
     this.setState({newMovieName: value});
   }
@@ -26,6 +30,20 @@ class MoviesContainer extends Component {
     }));
   }
 
+  onChangeMovie = (id, value) => {
+    const movies = this.state.movies.map(movie => {
+     if(movie.id === id) {
+       return {
+         ...movie,
+         title: value
+       }
+     }
+     return movie;
+   });
+
+   this.setState({movies});
+  }
+
   render() {
     return (
       <div className="Container">
@@ -35,7 +53,10 @@ class MoviesContainer extends Component {
           onAdd={this.addNewMovie}
         />
         <p className="mt-4"><strong>To watch list:</strong></p>
-        <MoviesList movies={this.state.movies}/>
+        <MoviesList
+          movies={this.state.movies}
+          onChangeMovie={this.onChangeMovie}
+        />
       </div>
     );
   }

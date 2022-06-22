@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 
 class NewMovie extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[new movie] should update');
+  }
+
   render() {
     return (
       <div className="d-flex justify-content-between">
