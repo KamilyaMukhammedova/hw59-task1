@@ -3,6 +3,12 @@ import React, {Component} from 'react';
 class Movie extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[movie] should update');
+
+    return nextProps.title !== this.props.title;
+  }
+
+  componentDidUpdate() {
+    console.log('[movie] didUpdate');
   }
 
   render() {
@@ -16,7 +22,13 @@ class Movie extends Component {
           value={this.props.title}
           onChange={(e) => this.props.onChangeMovie(this.props.id, e.target.value)}
         />
-        <button type="button" className="btn btn-danger">X</button>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={(e) => this.props.onRemove(e, this.props.id)}
+        >
+          X
+        </button>
       </div>
     );
   }

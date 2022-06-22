@@ -13,9 +13,6 @@ class MoviesContainer extends Component {
     newMovieName: '',
   };
 
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log('[container] should update');
-  }
 
   onNewMovieName = (value) => {
     this.setState({newMovieName: value});
@@ -28,6 +25,7 @@ class MoviesContainer extends Component {
         {title: this.state.newMovieName, id: nanoid()}
       ]
     }));
+    this.setState({newMovieName: ''});
   }
 
   onChangeMovie = (id, value) => {
@@ -44,6 +42,12 @@ class MoviesContainer extends Component {
    this.setState({movies});
   }
 
+  onRemoveMovie = (e, id) => {
+    const movies = this.state.movies.filter(movie => movie.id !== id);
+    this.setState({movies});
+  }
+
+
   render() {
     return (
       <div className="Container">
@@ -56,6 +60,7 @@ class MoviesContainer extends Component {
         <MoviesList
           movies={this.state.movies}
           onChangeMovie={this.onChangeMovie}
+          onRemove={this.onRemoveMovie}
         />
       </div>
     );

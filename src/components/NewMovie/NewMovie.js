@@ -3,6 +3,12 @@ import React, {Component} from 'react';
 class NewMovie extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[new movie] should update');
+
+    return nextProps.newMovieName !== this.props.newMovieName;
+  }
+
+  componentDidUpdate() {
+    console.log('[new movie] didUpdate');
   }
 
   render() {
