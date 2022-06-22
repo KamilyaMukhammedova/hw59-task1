@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {nanoid} from "nanoid";
+import NewMovie from "../../components/NewMovie/NewMovie";
+import MoviesList from "../../components/MoviesList/MoviesList";
 
 class MoviesContainer extends Component {
   state = {
@@ -12,8 +14,10 @@ class MoviesContainer extends Component {
 
   render() {
     return (
-      <div>
-
+      <div className="Container">
+        <NewMovie/>
+        <p className="mt-4"><strong>To watch list:</strong></p>
+        <MoviesList movies={this.state.movies}/>
       </div>
     );
   }
