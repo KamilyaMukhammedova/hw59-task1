@@ -6,7 +6,7 @@ class MoviesList extends Component {
     return this.props.movies.map(movie => (
       <Movie
         key={movie.id}
-        name={movie.name}
+        title={movie.title}
       />
     ));
   }

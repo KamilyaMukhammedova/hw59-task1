@@ -6,16 +6,34 @@ import MoviesList from "../../components/MoviesList/MoviesList";
 class MoviesContainer extends Component {
   state = {
     movies: [
-      {name: 'Harry Potter and the Chamber of Secrets', id: nanoid()},
-      {name: 'Avengers: Infinity War', id: nanoid()},
-      {name: 'Iron Man', id: nanoid()},
+      {title: 'Harry Potter and the Chamber of Secrets', id: nanoid()},
+      {title: 'Avengers: Infinity War', id: nanoid()},
+      {title: 'Iron Man', id: nanoid()},
     ],
+    newMovieName: '',
   };
+
+  onNewMovieName = (value) => {
+    this.setState({newMovieName: value});
+  }
+
+  addNewMovie = () => {
+    this.setState(prev => ({
+      movies: [
+        ...prev.movies,
+        {title: this.state.newMovieName, id: nanoid()}
+      ]
+    }));
+  }
 
   render() {
     return (
       <div className="Container">
-        <NewMovie/>
+        <NewMovie
+          newMovieName={this.state.newMovieName}
+          onNewMovie={this.onNewMovieName}
+          onAdd={this.addNewMovie}
+        />
         <p className="mt-4"><strong>To watch list:</strong></p>
         <MoviesList movies={this.state.movies}/>
       </div>
