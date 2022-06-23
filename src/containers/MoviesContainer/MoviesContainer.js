@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {nanoid} from "nanoid";
-import NewMovie from "../../components/NewMovie/NewMovie";
-import MoviesList from "../../components/MoviesList/MoviesList";
+import NewMovie from "../../components/MoviesClassComponents/NewMovie/NewMovie";
+import MoviesList from "../../components/MoviesClassComponents/MoviesList/MoviesList";
 
 class MoviesContainer extends Component {
   state = {
@@ -46,7 +46,6 @@ class MoviesContainer extends Component {
     const movies = this.state.movies.filter(movie => movie.id !== id);
     this.setState({movies});
   }
-
 
   render() {
     return (

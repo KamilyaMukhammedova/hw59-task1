@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Movie from "../Movie/Movie";
 
-class MoviesList extends Component {
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log('[movies list] should update');
-  // }
+class MoviesList extends PureComponent {
+  componentDidUpdate() {
+    console.log('[movies list] didUpdate');
+  }
 
   render() {
     return this.props.movies.map(movie => (
